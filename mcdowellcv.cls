@@ -1,7 +1,7 @@
 %% The MIT License (MIT)
 %%
 %% Copyright (c) 2015 Daniil Belyakov
-%% modificado por isaac MM
+%% koebner || isaac Marquina
 %% Permission is hereby granted, free of charge, to any person obtaining a copy
 %% of this software and associated documentation files (the "Software"), to deal
 %% in the Software without restriction, including without limitation the rights
@@ -52,11 +52,6 @@
 % Set document margins
 \usepackage[left=0.75in,top=0.6in,right=0.75in,bottom=0.6in]{geometry}
 
-% Set font face
-%\usepackage{fontspec}
-%\setmainfont[SmallCapsFeatures={Renderer=Basic},
-%Ligatures={TeX, NoCommon, NoDiscretionary}]{\mainfontface}
-
 % Remove paragraph indentation
 \usepackage[parfill]{parskip}
 
@@ -105,13 +100,13 @@
   \def\beforesectionheaderhrulespace{2.85pt}
   \def\sectionheaderhrlueheight{0.518pt}
   \def\aftersectionheaderspace{-5.8pt}
-  
+
   \ifpapersize
-    \def\aftersinglelinesubsectionheaderspace{-5.75pt}
+  \def\aftersinglelinesubsectionheaderspace{-5.75pt}
   \else
-    \def\aftersinglelinesubsectionheaderspace{-20.25pt}
+  \def\aftersinglelinesubsectionheaderspace{-20.25pt}
   \fi
-  
+
   \def\afterdoublelinesubsectionheaderspace{-11.75pt}
   \def\aftermultilinesubsectionheaderspace{-7.75pt}
   \def\afteremptysubsectionheaderspace{1.25pt}
@@ -125,11 +120,11 @@
   \def\beforesectionheaderhrulespace{3pt}
   \def\sectionheaderhrlueheight{0.5pt}
   \def\aftersectionheaderspace{-4pt}
-  
+
   \ifpapersize
-    \def\aftersinglelinesubsectionheaderspace{-4pt}
+  \def\aftersinglelinesubsectionheaderspace{-4pt}
   \else
-    \def\aftersinglelinesubsectionheaderspace{-18.5pt}
+  \def\aftersinglelinesubsectionheaderspace{-18.5pt}
   \fi
 
   \def\afterdoublelinesubsectionheaderspace{-10pt}
@@ -159,7 +154,11 @@
 \makeatletter
 
 \newcommand\name[1]{\def\@name{#1}}
-\name{}
+\name{
+  \colorlet{green}{gray}
+  \colorlet{orange}{red}
+  \colorlet{purple}{gray}
+}
 
 \newcommand\printname{
   \typeout {kokoko}
@@ -186,7 +185,7 @@
 \newcommand\makeheader{
   \begin{center}
     \begin{tabu} to 1\textwidth { X[l,m] X[2,c,m] X[r,m] }
-      \printaddress & \printname & \printcontacts \\
+    \printaddress & \printname & \printcontacts \\
     \end{tabu}
   \end{center}
   \vspace*{\afterheaderspace}
@@ -201,14 +200,14 @@
 \makeatletter
 \newenvironment{cvsection}[1]{
   \vspace*{\beforesectionheaderspace}
-  % Set text margins to equal \tabcolsep (6pt by default)
+% Set text margins to equal \tabcolsep (6pt by default)
   \begin{adjustwidth}{\sectionheadermargin}{\sectionheadermargin}
     \textsc{\textbf{#1}}
   \end{adjustwidth}
   \vspace*{\beforesectionheaderhrulespace}
   \hrule height \sectionheaderhrlueheight
   \vspace*{\aftersectionheaderspace}
-}{}
+  }{}
 \makeatother
 
 % Print a subsection
@@ -224,9 +223,9 @@
   \notblank{#4}{\toggletrue{righttitledefined}}{}
   \ifboolexpr{togl {lefttitledefined} or togl {centertitledefined} or togl {righttitledefined}}{
     \begin{tabu} to 1\textwidth { X[l,p] X[c,p] X[r,p] }
-      \textbf{#2} & \textbf{#3} & \textbf{#4} \\
+    \textbf{#2} & \textbf{#3} & \textbf{#4} \\
     \end{tabu}
-    % Add space according to the specidied number of lines
+  % Add space according to the specidied number of lines
     \ifnumcomp{#1}{=}{1}{\vspace*{\aftersinglelinesubsectionheaderspace}}{
       \ifnumcomp{#1}{=}{2}{\vspace*{\afterdoublelinesubsectionheaderspace}}{
         \vspace*{\aftermultilinesubsectionheaderspace}
@@ -239,8 +238,8 @@
   \togglefalse{centertitledefined}
   \togglefalse{righttitledefined}
   \begin{adjustwidth}{\subsectionmargin}{\subsectionmargin}
-}
-{
+  }
+  {
   \end{adjustwidth}
   \vspace*{\aftersubsectionspace}
 }
